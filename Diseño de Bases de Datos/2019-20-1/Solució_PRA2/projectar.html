@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title> PRA2 Cartellera NOVA PROJECCIÓ </title>
+</head>
+
+<body>
+    <center>
+        <h1>REALITZAR UNA PROJECCIÓ</h1>
+        <br> Per afegir una nova projecció d'una pel·lícula a un cinema, tria la pel·lícula i el cinema de les respectives llistes. També has de posar la recaptació obtinguda<br>
+        <br>
+        <form action="gestiovista.php" method="POST">
+            <table>
+                <tr>
+                    <td>Pel·lícula:</td>
+                    <td>
+                        <?php
+                        
+						include_once("tcontrol.php");
+						//es crea un objecte de TControl i es crida a la funcionalitat que munta el llistat
+                        $c = new tcontrol();
+                        $res = $c->llistatpelis(); 
+                        echo ($res);
+						?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Cinema:</td>
+                    <td>
+                        <?php
+                        
+						include_once("tcontrol.php");
+						//es crea un objecte de TControl i es crida a la funcionalitat que munta el llistat
+                        $c = new tcontrol();
+                        $res = $c->llistatcinemes(); 
+                        echo ($res);
+						?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Recaptació:</td>
+                    <td><input type="text" name="recaptacio" value="0" /></td>
+                </tr>
+            </table>
+            <input type="submit" name="opcio" value="Projectar" />
+        </form>
+        <br>
+        <a href="index.html">Tornar al menú principal</a><br>
+    </center>
+</body>
+
+</html>

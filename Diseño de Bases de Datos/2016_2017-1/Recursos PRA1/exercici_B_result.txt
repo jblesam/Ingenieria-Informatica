@@ -1,0 +1,189 @@
++------------------------------------+--------------------------------------------+
+| nom                                | email                                      |
++------------------------------------+--------------------------------------------+
+| Anegats                            | Anegats@uoc.edu                            |
+| Aspencat                           | Aspencat@uoc.edu                           |
+| Sau                                | Sau@uoc.edu                                |
+| Beth                               | Beth@uoc.edu                               |
+| Junts                              | Junts@uoc.edu                              |
+| Poker d'Asos                       | Poker_d_Asos@uoc.edu                       |
+| Teràpia de Shock                   | Teràpia_de_Shock@uoc.edu                   |
+| Clepton                            | Clepton@uoc.edu                            |
+| Joan Masdéu                        | Joan_Masdéu@uoc.edu                        |
+| Umpah-pah                          | Umpah-pah@uoc.edu                          |
+| High Times                         | High_Times@uoc.edu                         |
+| At Versaris                        | At_Versaris@uoc.edu                        |
+| Titot i David Rosell               | Titot_i_David_Rosell@uoc.edu               |
+| Pirats Sound Sistema               | Pirats_Sound_Sistema@uoc.edu               |
+| Pau Augé Gracià                    | Pau_Augé_Gracià@uoc.edu                    |
+| Obrint Pas                         | Obrint_Pas@uoc.edu                         |
+| DEPT.                              | DEPT.@uoc.edu                              |
+| Efecte Croma                       | Efecte_Croma@uoc.edu                       |
+| Burman Flash                       | Burman_Flash@uoc.edu                       |
+| Skalissai                          | Skalissai@uoc.edu                          |
+| Lax'n'Busto                        | Lax_n_Busto@uoc.edu                        |
+| Ken Zazpi                          | Ken_Zazpi@uoc.edu                          |
+| Gertrudis                          | Gertrudis@uoc.edu                          |
+| Jordi Montañez                     | Jordi_Montañez@uoc.edu                     |
+| Xazzar                             | Xazzar@uoc.edu                             |
+| Paul Fuster                        | Paul_Fuster@uoc.edu                        |
+| Joan Manuel Serrat                 | Joan_Manuel_Serrat@uoc.edu                 |
+| Kibo                               | Kibo@uoc.edu                               |
+| Kop                                | Kop@uoc.edu                                |
+| El petit de cal Eril               | El_petit_de_cal_Eril@uoc.edu               |
++------------------------------------+--------------------------------------------+
+30 rows in set (0.05 sec)
+
++-----+-----------------------------------------------------------------------+-----------------+----------+
+| ID  | nom                                                                   | any_publicació  | local_ID |
++-----+-----------------------------------------------------------------------+-----------------+----------+
+| 191 | Senzills de B-30                                                      |            1994 |        7 |
+| 163 | Postals                                                               |            1993 |        4 |
+| 158 | Perversions: 15 cançons de Els Pets interpretades per altres músics   |            1993 |        3 |
+| 138 | Manudu paligru                                                        |            1994 |        7 |
+| 121 | La Pelu                                                               |            1992 |        2 |
+| 114 | Jocs d'amagat                                                         |            1993 |        4 |
+| 101 | Gavines i dragons                                                     |            1992 |        7 |
+|   8 | 5 formigues fan + que 4 elefants                                      |            1994 |        6 |
++-----+-----------------------------------------------------------------------+-----------------+----------+
+8 rows in set (0.00 sec)
+
++-----------------------------------------------------------------------+-------------+-----------+
+| disc                                                                  | local       | aforament |
++-----------------------------------------------------------------------+-------------+-----------+
+| La Pelu                                                               | Apolo       |      1000 |
+| 5 formigues fan + que 4 elefants                                      | Barts       |       850 |
+| Jocs d'amagat                                                         | Heliogàbal  |        85 |
+| Postals                                                               | Heliogàbal  |        85 |
+| Senzills de B-30                                                      | Jamboree    |       250 |
+| Gavines i dragons                                                     | Jamboree    |       250 |
+| Manudu paligru                                                        | Jamboree    |       250 |
+| Perversions: 15 cançons de Els Pets interpretades per altres músics   | Luís se Va  |        50 |
++-----------------------------------------------------------------------+-------------+-----------+
+8 rows in set (0.00 sec)
+
++-------------+------------+--------+
+| nom         | assistents | màxim  |
++-------------+------------+--------+
+| Razzmatazz  |  2481.4516 |   2495 |
+| Apolo       |   978.7742 |    994 |
+| Luís se Va  |    34.4865 |     48 |
+| Heliogàbal  |    74.5000 |     85 |
+| La Paloma   |   571.4500 |    580 |
+| Barts       |   842.0526 |    849 |
+| Jamboree    |   234.4324 |    244 |
++-------------+------------+--------+
+7 rows in set (0.04 sec)
+
++-------------+------------+--------+----------------------+
+| local       | assistents | màxim  | grup                 |
++-------------+------------+--------+----------------------+
+| Razzmatazz  |  2481.4516 |   2495 | Gertrudis            |
+| Apolo       |   978.7742 |    994 | Gerard Quintana      |
+| Luís se Va  |    34.4865 |     48 | Susanne Georgi       |
+| Luís se Va  |    34.4865 |     48 | Whiskyn's            |
+| Luís se Va  |    34.4865 |     48 | Xana                 |
+| Heliogàbal  |    74.5000 |     85 | Manel                |
+| La Paloma   |   571.4500 |    580 | Mesclat              |
+| Barts       |   842.0526 |    849 | La Porta dels Somnis |
+| Jamboree    |   234.4324 |    244 | Pepet i marieta      |
++-------------+------------+--------+----------------------+
+9 rows in set (0.01 sec)
+
++-----+---------------------------------+----------+---------------------------------+
+| id  | nom                             | duració  | nom                             |
++-----+---------------------------------+----------+---------------------------------+
+| 285 | Qualsevol nit pot sortir el sol |        5 | Qualsevol nit pot sortir el sol |
+| 334 | Cop de rock                     |        3 | Senzills de Dagoll Dagom        |
+| 152 | Desperta't en mi                |        3 | El cel, aquí                    |
+| 357 | La teva decisió (Get a Life)    |        3 | Senzills de Susanne Georgi      |
+| 286 | La muntanya                     |        2 | Quanta llana                    |
+|  81 | Lo secret                       |        4 | Birla!!!                        |
+|  82 | Tradicions                      |        4 | Birla!!!                        |
+| 365 | Aquest cony de temps            |        3 | Sol                             |
+|  62 | Wa yeah                         |        3 | Batiscafo Katiuscas             |
+| 366 | Què ens queda?                  |        3 | Sol                             |
+| 219 | Nit de Sant Joan                |        6 | La Nit de Sant Joan             |
+| 290 | La rumba del calçot             |        4 | Que no et prengui el pèl        |
+|  94 | L'oceà                          |        4 | Brut                            |
+|  32 | Divisa                          |        4 | Aires de Primavera              |
+| 289 | La Ratafia                      |        4 | Que no et prengui el pèl        |
+| 404 | Dos és un                       |        4 | Va amb nosaltres                |
+| 135 | De mica en mica                 |        4 | De mica en mica                 |
+| 142 | Sabem fer i fem saber           |        4 | Dolça Victòria                  |
+| 141 | Companya                        |        3 | Dolça Victòria                  |
+| 309 | Sempre més                      |        3 | Sempremés                       |
+|  80 | Bigoti Vermell                  |        2 | Bigoti Vermell                  |
+| 287 | Per què ho faria?               |        2 | Que mai no pari                 |
++-----+---------------------------------+----------+---------------------------------+
+22 rows in set (0.01 sec)
+
++----+--------+---------------+
+| ID | nom    | any_formació  |
++----+--------+---------------+
+| 36 | Crator |          1999 |
++----+--------+---------------+
+1 row in set (0,00 sec)
+
++-----+----------------------------------+----------+----------+
+| ID  | nom                              | duració  | cançons  |
++-----+----------------------------------+----------+----------+
+|   8 | 5 formigues fan + que 4 elefants |        5 |        1 |
+|  17 | al marge d'un camí               |        4 |        1 |
+|  27 | ASSAIG/ERROR                     |        3 |        1 |
+|  29 | autòmat infinit                  |        3 |        1 |
+|  42 | bon dia                          |       16 |        4 |
+|  48 | CANÇONS 2011                     |        4 |        1 |
+|  48 | cançons 2011                     |       25 |        8 |
+|  56 | comissió de festa                |        2 |        1 |
+|  63 | de bosc                          |       12 |        3 |
+|  64 | de la nit al dia                 |        3 |        1 |
+|  72 | el camí cap a nosaltres          |        6 |        2 |
+|  77 | el meu món                       |        3 |        1 |
+|  79 | EL MURMULLO DEL FUEGO            |        3 |        1 |
+|  82 | el retorn                        |        4 |        1 |
+|  93 | família                          |        4 |        1 |
+|  99 | fruits sex                       |        3 |        1 |
+| 103 | gira                             |        3 |        1 |
+| 105 | GREATEST HITS                    |        3 |        1 |
+| 108 | himne per a la independència     |        5 |        1 |
+| 112 | jo faig cançons                  |        4 |        1 |
+| 115 | jugues...?                       |        3 |        1 |
+| 123 | la vida perfecta                 |        3 |        1 |
+| 140 | mitjons blancs                   |        5 |        2 |
+| 144 | MUSICA I LLETRA                  |        2 |        1 |
+| 144 | musica i lletra                  |        3 |        1 |
+| 154 | pel·lícules                      |        3 |        1 |
+| 160 | PLOU I FA SOL                    |        6 |        2 |
+| 164 | postrof                          |        3 |        1 |
+| 170 | que no acabi mai!                |        2 |        1 |
+| 173 | quina nit                        |        9 |        2 |
+| 188 | senzills d'ana i alícia          |        2 |        1 |
+| 203 | senzills de la pegatina          |        2 |        1 |
+| 210 | senzills de miquel abras         |        2 |        1 |
+| 211 | senzills de pau augé gracià      |        4 |        1 |
+| 215 | senzills de raimon               |        3 |        1 |
+| 216 | senzills de rimapatxa western    |        4 |        1 |
+| 225 | si els dits fossin xilòfons      |        3 |        1 |
+| 227 | simbènia                         |        2 |        1 |
+| 232 | sota la dutxa                    |        3 |        1 |
+| 248 | trece                            |        3 |        1 |
+| 254 | un nou sentit                    |        4 |        1 |
+| 260 | vigila                           |        4 |        1 |
++-----+----------------------------------+----------+----------+
+42 rows in set (0.01 sec)
+
++-----+-------------------+---------------------------+---------------+--------+
+| id  | nom               | email                     | any_formació  | discos |
++-----+-------------------+---------------------------+---------------+--------+
+|  29 | Brams             | Brams@uoc.edu             |          2015 |      4 |
+| 158 | Teràpia de Shock  | Teràpia_de_Shock@uoc.edu  |          2015 |      4 |
+|  42 | DEPT.             | DEPT.@uoc.edu             |          2013 |      4 |
+|  59 | Els Pets          | Els_Pets@uoc.edu          |          2008 |     10 |
+| 171 | Whiskyn's         | Whiskyn_s@uoc.edu         |          1998 |      4 |
+| 139 | Pepet i marieta   | Pepet_i_marieta@uoc.edu   |          1992 |      4 |
++-----+-------------------+---------------------------+---------------+--------+
+6 rows in set (0,11 sec)
+
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
