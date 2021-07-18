@@ -1,0 +1,7 @@
+Industrial_Risk,Management_Risk,Financial_Flexibility,Credibility,Competitiveness,Operating_Risk,Class
+P,P,A,A,A,P,NB
+N,N,A,A,A,N,NB
+A,A,A,A,A,A,NB
+A,N,N,N,N,A,B
+A,A,N,N,N,P,B
+A,N,N,N,N,N,B

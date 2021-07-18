@@ -1,0 +1,269 @@
+#########################################################################################
+# 
+# STUDENT HELPERS
+#
+#########################################################################################
+#
+# Funció creaMatriu.
+# * Paràmetre clau: Paraula per generar la matriu.
+#                   Si la paraula es buida ("") genera una matriu amb l'alfabet base.
+# * Retorna: Crea una de les quatre matrius, base o amb paraula clau, que formaran la clau
+#            de la xifra dels Quatre-Quadrats.
+#
+def creaMatriu(clau):
+    seq=""
+    alf="ABCDEFGHIJKLMNOPRSTUVWXYZ"
+    
+    # Si hi ha una clau, genera amb ella una seqüència de lletres sense repeticions.
+    if len(clau) > 0:
+        for c in clau:
+            if seq.find(c) == -1:
+                seq += c
+
+    # Introueix a la seqüència de lletres les que falten de l'alfabet sense repeticions
+    for c in alf:
+        if seq.find(c) == -1:
+            seq += c
+    
+    # Torna la matriu 5x5 amb les lletres de la seqüència.
+    return [[seq[5*i+j] for j in range(5)] for i in range(5)]
+    
+#########################################################################################
+#
+# Funció dCaracterAFilaColumna.
+# * Paràmetre matriu: Matriu on cercar el caràcter.
+# * Paràmetre caracter: Caràcter a cercar.
+# * Retorna: La fila i la columna on s'ha trobat el caràcter dintre de la matriu.
+#
+def dCaracterAFilaColumna(matriu, caracter):
+    # Cerquem el caràcter
+    for fil in range(5):
+        for col in range(5):
+            # Quan el trobem finalitzem la cerca en les columnes
+            if matriu[fil][col] == caracter:
+                break
+        # Quan el trobem finalitzem la cerca en les files
+        if matriu[fil][col] == caracter:
+            break
+
+    # Tornem la posició on s'ha trobat el caràcter cercat.
+    return fil,col
+
+#########################################################################################
+#
+# Funció dFilaColumnaACaracter.
+# * Paràmetre matriu: Matriu de caràcters.
+# * Paràmetre filacol: La fila i la columna on es troba el caràcter.
+# * Retorna: Caràcter ubicat en la matriu en la fila i columna donades.
+#
+def dFilaColumnaACaracter(matriu, filacol):
+    return matriu[filacol[0]][filacol[1]]
+
+#########################################################################################
+#
+# Funció preparaMissatge.
+# * Paràmetre missatge: Text a xifrar.
+# * Retorna: Text amb la lletra Q eliminada (no forma part de l'alfabet)
+#            i ajustat en longitut per que sigui parell. Si la longitut és senar
+#            se li afegeix una X per què la longitut sigui parell.
+#
+def preparaMissatge(missatge):
+    nMissatge=""
+    
+    # Eliminem del missatge el caràcter 'Q', que no pertany a l'alfabet.
+    nMissatge = llevaLletra(missatge, 'Q')
+    
+    # Si la longitud del missatge no és senar, s'afegeix el caràcter 'X'.
+    if len(nMissatge) % 2 <> 0:
+        nMissatge += 'X'
+    
+    return nMissatge
+
+#########################################################################################
+#
+# Funció llevaLletra.
+# * Paràmetre clau: Text a processar.
+# * Retorna: Text amb la lletra Q eliminada
+#
+def llevaLletra(clau, lletra):
+    nClau = ""
+    
+    # Cerquem i eliminem del missatge el caràcter 'Q', que no pertany a l'alfabet.
+    for c in range(len(clau)):
+        if clau[c] <> lletra:
+            nClau += clau[c]
+    
+    return nClau
+
+#########################################################################################
+#
+# Funció extreuMatriu.
+# * Paràmetre square Matriu Quatre-Quadrats.
+# * Paràmetre index: Index de la matriu a extreure (0-3)
+# * Retorna: Matriu de la clau Quatre-Quadrats corresponent a l'index indicat.
+#
+def extreuMatriu(square, index):
+    mat = ([])
+    
+    # Extreu les files de la matriu desitjada (0-3) i les deixa en mat.
+    for fil in range(5):
+        mat+= [square[index][fil]]
+    
+    return mat
+
+# EXERCISE 1: Four-Square Key Generation
+#
+# Function UOC_FourSquare_GenKey.
+# * Parameter keyword1: string with the first key word
+# * Parameter keyword2: string with the second key word
+# * Returns: generates the 4 matrices that form a Four-Square key
+#
+def UOC_FourSquare_GenKey(keyword1, keyword2):
+    
+    square = ([],[],[],[])
+    
+    #### IMPLEMENTATION GOES HERE ####
+    
+    # Atés que l'alfabet no compta amb la lletra Q, l'eliminime de les claus.
+    keyword1 = llevaLletra(keyword1, 'Q')
+    keyword2 = llevaLletra(keyword2, 'Q')
+
+    # Prepara la clau Quatre-Quadrats.
+    square = (creaMatriu(""),creaMatriu(keyword2),creaMatriu(keyword1),creaMatriu(""))
+    
+    ##################################
+    
+    return square
+    
+# EXERCISE 2: Four-Square cipher
+#
+# Function UOC_FourSquare_Cipher.
+# * Parameter message: message to cipher (plaintext)
+# * Parameter key: key to use when ciphering the message (as it is returned by the UOC_FourSquare_GenKey)
+# * Returns: ciphered text
+#
+def UOC_FourSquare_Cipher(message, key):
+    
+    ciphertext = ""
+    
+    #### IMPLEMENTATION GOES HERE ####
+    
+    # Prepara el missatge per que no contingui la lletra 'Q' ni sigui de longitut senar.
+    message = preparaMissatge(message)
+
+    # Recorre el missatge de dos en dos lletres
+    for c in range(0,len(message),2):
+        # Esbrina la fila-columna de cada lletra
+        dirA1 = dCaracterAFilaColumna(extreuMatriu(key, 0), message[c])
+        dirA2 = dCaracterAFilaColumna(extreuMatriu(key, 3), message[c+1])
+
+        # Les lletres xifrades corresponents a les lletres en clar són:
+        # Primera lletra xifrada -> Lletra situada en la fila dirA1 columna dirA2
+        #                           de la matriu K1.
+        # Segona lletra xifrada -> Lletra situada en la fila dirA2 columna DirA1
+        #                          de la matriu K2.
+        # Finalment les emmagatzema en ciphertext.
+        dirK1 = dirA1[0],dirA2[1]
+        ciphertext += dFilaColumnaACaracter(extreuMatriu(key, 2), dirK1)
+        dirK2 = dirA2[0],dirA1[1]
+        ciphertext += dFilaColumnaACaracter(extreuMatriu(key, 1), dirK2)
+        
+    ##################################
+    
+    return ciphertext
+    
+# EXERCISE 3: Four-Square decipher
+#
+# Function UOC_FourSquare_Decipher.
+# * Parameter message: message to decipher (ciphertext)
+# * Parameter key: key to use when deciphering the message (as it is returned by the UOC_FourSquare_GenKey)
+# * Returns: plaintext corresponding to the ciphertext
+#    
+def UOC_FourSquare_Decipher(message, key):
+    
+    plaintext = ""
+    
+    #### IMPLEMENTATION GOES HERE ####
+    
+    # Recorre el missatge de dos en dos lletres
+    for c in range(0,len(message),2):
+        # Esbrina la fila-columna de cada lletra xifrada
+        dirK1 = dCaracterAFilaColumna(extreuMatriu(key, 2), message[c])
+        dirK2 = dCaracterAFilaColumna(extreuMatriu(key, 1), message[c+1])
+        
+        # Les lletres en clar corresponents a les lletres xifrades són:
+        # Primera lletra en clar ->
+        # Segona lletra en clar ->
+        # Finalment, les emmagatzemem en plaintext.
+        dirA1 = dirK1[0],dirK2[1]
+        plaintext += dFilaColumnaACaracter(extreuMatriu(key, 0), dirA1)
+        dirA2 = dirK2[0],dirK1[1]
+        plaintext += dFilaColumnaACaracter(extreuMatriu(key, 3), dirA2) 
+    
+    # Si el missatge en clar acaba en 'X' la retirem ja que s'enten que és un
+    # caràcter de farciment.
+    if plaintext[len(plaintext)-1] == 'X':
+        plaintext = plaintext.strip('X')
+      
+    ##################################
+    
+    return plaintext
+
+# Test 10. Key generation test.	
+def test_case_10(name, keyword1, keyword2, exp_key):
+    key = UOC_FourSquare_GenKey(keyword1, keyword2)
+    print "Test", name + ":", key == exp_key
+
+exp_key = ([['A', 'B', 'C', 'D', 'E'], ['F', 'G', 'H', 'I', 'J'], ['K', 'L', 'M', 'N', 'O'], ['P', 'R', 'S', 'T', 'U'], ['V', 'W', 'X', 'Y', 'Z']], [['H', 'O','P', 'E', 'R'], ['A', 'B', 'C', 'D', 'F'], ['G', 'I', 'J', 'K', 'L'],['M', 'N', 'S', 'T', 'U'], ['V', 'W', 'X', 'Y', 'Z']], [['J', 'E', 'R', 'M', 'I'], ['A', 'S', 'B', 'C', 'D'], ['F', 'G', 'H', 'K','L'], ['N', 'O', 'P', 'T', 'U'], ['V', 'W', 'X', 'Y', 'Z']], [['A', 'B', 'C','D', 'E'], ['F', 'G', 'H', 'I', 'J'], ['K', 'L', 'M', 'N', 'O'], ['P','R', 'S', 'T', 'U'], ['V', 'W', 'X', 'Y', 'Z']])
+test_case_10("10.1", "JEREMIAS", "HOOPERO", exp_key);
+
+exp_key = ([['A', 'B', 'C', 'D', 'E'], ['F', 'G', 'H', 'I', 'J'], ['K', 'L', 'M','N', 'O'], ['P', 'R', 'S', 'T', 'U'], ['V', 'W', 'X', 'Y', 'Z']], [['B', 'R','I', 'N', 'G'], ['T', 'O', 'L', 'F', 'E'], ['A', 'C', 'D', 'H', 'J'],['K', 'M', 'P', 'S', 'U'], ['V', 'W', 'X', 'Y', 'Z']], [['A','B', 'C', 'D', 'E'], ['F', 'G', 'H', 'I', 'J'], ['K', 'L', 'M', 'N','O'], ['P', 'R', 'S', 'T', 'U'], ['V', 'W', 'X', 'Y', 'Z']],[['A', 'B', 'C','D', 'E'], ['F', 'G', 'H', 'I', 'J'], ['K', 'L', 'M', 'N', 'O'], ['P','R', 'S', 'T', 'U'], ['V', 'W', 'X', 'Y', 'Z']])
+test_case_10("10.2", "ABABABABA", "BRINGTOLIFE", exp_key);
+
+exp_key = ([['A', 'B', 'C', 'D', 'E'], ['F', 'G', 'H', 'I', 'J'], ['K', 'L', 'M','N', 'O'], ['P', 'R', 'S', 'T', 'U'], ['V', 'W', 'X', 'Y', 'Z']], [['R', 'S','T', 'U', 'V'], ['W', 'X', 'Y', 'Z', 'A'], ['B', 'C', 'D', 'E', 'F'],['G', 'H', 'I', 'J', 'K'], ['L', 'M', 'N', 'O', 'P']], [['D','E', 'F', 'G', 'H'], ['I', 'J', 'K', 'L', 'M'], ['N', 'O', 'P', 'A','B'], ['C', 'R', 'S', 'T', 'U'], ['V', 'W', 'X', 'Y', 'Z']], [['A', 'B', 'C','D', 'E'], ['F', 'G', 'H', 'I', 'J'], ['K', 'L', 'M', 'N', 'O'], ['P','R', 'S', 'T', 'U'], ['V', 'W', 'X', 'Y', 'Z']])
+test_case_10("10.3", "DEFGHIJKLMNOPQ", "RSTUVWXYZ", exp_key);
+
+exp_key = ([['A', 'B', 'C', 'D', 'E'], ['F', 'G', 'H', 'I', 'J'], ['K', 'L', 'M','N', 'O'], ['P', 'R', 'S', 'T', 'U'], ['V', 'W', 'X', 'Y', 'Z']], [['B', 'C','D', 'A', 'E'], ['F', 'G', 'H', 'I', 'J'], ['K', 'L', 'M', 'N', 'O'],['P', 'R', 'S', 'T', 'U'], ['V', 'W', 'X', 'Y', 'Z']], [['Z','A', 'B', 'C', 'D'], ['E', 'F', 'G', 'H', 'I'], ['J', 'K', 'L', 'M','N'], ['O', 'P', 'R', 'S', 'T'], ['U', 'V', 'W', 'X', 'Y']], [['A', 'B', 'C','D', 'E'], ['F', 'G', 'H', 'I', 'J'], ['K', 'L', 'M', 'N', 'O'], ['P','R', 'S', 'T', 'U'], ['V', 'W', 'X', 'Y', 'Z']])
+test_case_10("10.4", "Z", "BCDD", exp_key);
+
+# Test 20. Ciphering test.
+def test_case_20(name, keyword1, keyword2, message, exp_ciphertext):
+    key = UOC_FourSquare_GenKey(keyword1, keyword2)
+    ciphertext = UOC_FourSquare_Cipher(message, key)
+    print "Test", name + ":", ciphertext == exp_ciphertext
+
+test_case_20("20.1", "JEREMIAS", "HOOPERO", "CRIPTOGRAPHYISANICESUBJECT", "ESATUKSNJMCXBTMGBERUORDRMS");
+test_case_20("20.2", "JEREMIAS", "HOOPERO", "SHORT", "PCGUPY");
+test_case_20("20.3", "JEREMIAS", "HOOPERO", "LONGER", "LIGDEU");
+test_case_20("20.4", "ABABABABA", "BRINGTOLIFE", "SUBSTITUTIONCIPHERSAREINSECURE", "UPCMTFUSTFNJDLSTBUPIURIHUIEPUR");
+test_case_20("20.5", "DEFGHIJKLMNOPQ", "RSTUVWXYZ", "THISISADUMMYMESSAGE", "SZKJKJGRSFANBTSIEWFP");
+test_case_20("20.6", "Z", "BCDD", "THATSANOLDENCRYPTIONPROTOCOL", "RICPODNNMCCOASUTSIMOPPMULEKO");
+
+# Test 30. Deciphering test.
+def test_case_30(name, keyword1, keyword2, message):
+    key = UOC_FourSquare_GenKey(keyword1, keyword2)
+    ciphertext = UOC_FourSquare_Cipher(message, key)
+    deciphered = UOC_FourSquare_Decipher(ciphertext, key)
+    print "Test", name + ":", deciphered == message
+
+test_case_30("30.1", "JEREMIAS", "HOOPERO", "CRIPTOGRAPHYISANICESUBJECT");
+test_case_30("30.2", "JEREMIAS", "HOOPERO", "SHORT");
+test_case_30("30.3", "JEREMIAS", "HOOPERO", "LONGER");
+test_case_30("30.4", "ABABABABA", "BRINGTOLIFE", "SUBSTITUTIONCIPHERSAREINSECURE");
+test_case_30("30.5", "DEFGHIJKLMNOPQ", "RSTUVWXYZ", "THISISADUMMYMESSAGE");
+test_case_30("30.6", "Z", "BCDD", "THATSANOLDENCRYPTIONPROTOCOL");
+
+# Test 31. Deciphering test.
+def test_case_31(name, keyword1, keyword2, ciphertext, exp_deciphered):
+    key = UOC_FourSquare_GenKey(keyword1, keyword2)
+    deciphered = UOC_FourSquare_Decipher(ciphertext, key)
+    ciphertext2 = UOC_FourSquare_Cipher(deciphered, key)
+    print "Test", name + ":", deciphered == exp_deciphered and ciphertext == ciphertext2
+
+test_case_31("31.1", "JEREMIAS", "HOOPERO", "PDLUBBDPPNUEPGKUDPOWRMEVBELHEYHLMG", "THOUGHHERSTEPMOTHERWASAWICKEDWOMAN");
+test_case_31("31.2", "JEREMIAS", "HOOPERO", "MDOCTFTCGDDPPNELAHNPLKKOUHRMMGOYHLMGPCJUTUJMKFUJLEJENMLO", "DISGUISINGHERSELFASANOLDPEASANTWOMANSHEPUTAPOISONEDAPPLE");
+test_case_31("31.3", "JEREMIAS", "HOOPERO", "MMFOTSJEYIZILHPDJFGURUTTKUDPUJGDFFPDERSTRTMGRTLKWWCCUEUKFRZILH", "ATLASTDAWNWOKETHEFORESTTOTHESONGOFTHEBIRDSANDSNOWWHITETOOAWOKE");
+test_case_31("31.4", "ABABABABA", "BRINGTOLIFE", "TJTFNMJIBSAGAFRJANWYJIMY", "UNTILTHEDREADFULDAYWHEN");
+test_case_31("31.5", "DEFGHIJKLMNOP", "RSTUVWXYZ", "SZEAUSGVXJEKVRAJGGRJFRUUGJAKMTUSVSTSEWUSGVUEHESZKJHUGV", "THEGREEDYSERVANTATTRACTEDTOTHEREWARDAGREEDTODOTHISDEED");
+test_case_31("31.6", "Z", "BCDD", "SMKZWGHTBUTNMEUCXFKIILMECWCUMUIDTDYBMAUCOGTMMTIDFTUCXTMUIDMHNA", "SNOWWHITESTOODWAVINGGOODBYETOTHESEVENDWARFSONTHEIRWAYTOTHEMINE");
+

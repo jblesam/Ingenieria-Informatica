@@ -1,0 +1,7 @@
+age,education,marital-status,occupation,native-country,class
+28,Bachelors,Married-civ-spouse,Prof-specialty,Cuba,<=50K
+37,Masters,Married-civ-spouse,Exec-managerial,United-States,<=50K
+52,HS-grad,Married-civ-spouse,Exec-managerial,United-States,>50K
+31,Masters,Never-married,Prof-specialty,United-States,>50K
+42,Bachelors,Married-civ-spouse,Exec-managerial,United-States,>50K
+23,Bachelors,Never-married,Adm-clerical,United-States,<=50K

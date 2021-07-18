@@ -1,0 +1,3 @@
+age,education,marital-status,occupation,native-country,class
+38,Masters,Married-civ-spouse,Exec-managerial,United-States,>50K
+24,HS-grad,Never-married,Exec-managerial,United-States,<=50K

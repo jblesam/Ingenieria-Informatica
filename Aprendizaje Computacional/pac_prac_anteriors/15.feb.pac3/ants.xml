@@ -1,0 +1,1894 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMLSeSAmModel lastRunExperiment="Simulation_0" version="0.2"
+    build="2536" globalAssert="true" compileDebugFunction="true"
+    runDebugFunction="true" optimize="true" inline="true"
+    closures="false" xmlns="http://www.simsesam.de/schemas/model">
+    <modelProperties>
+        <Title></Title>
+        <Description></Description>
+        <Category></Category>
+        <Keywords></Keywords>
+        <Author></Author>
+        <Content></Content>
+        <SeSAmVersion>2.5.2 (build #2536 at 2012/01/31 15:05)</SeSAmVersion>
+    </modelProperties>
+    <userFunction name="Find Strongest Pheromone" id="UserFunction_0"
+        external="true" expert="false" inline="true">
+        <functionCall>
+            <call functionName="Maximize">
+                <parametricFunction>
+                    <functionCall>
+                        <call functionName="If Then Else">
+                            <call functionName=">">
+                                <call functionName="GetVariableFrom">
+                                    <variableID writeable="false" id="BodyVariableClass_6"/>
+                                    <parameterID id="FunctionArgument_1"/>
+                                </call>
+                                <call functionName="GetVariableFrom">
+                                    <variableID writeable="false" id="BodyVariableClass_6"/>
+                                    <parameterID id="FunctionArgument_2"/>
+                                </call>
+                            </call>
+                            <parameterID id="FunctionArgument_1"/>
+                            <parameterID id="FunctionArgument_2"/>
+                        </call>
+                    </functionCall>
+                    <parameter name="Phero1" id="FunctionArgument_1">
+                        <simObjectType/>
+                    </parameter>
+                    <parameter name="Phero2" id="FunctionArgument_2">
+                        <simObjectType/>
+                    </parameter>
+                </parametricFunction>
+                <parameterID id="FunctionArgument_0"/>
+            </call>
+        </functionCall>
+        <parameter name="List of Pheromones" id="FunctionArgument_0">
+            <listType>
+                <simObjectType/>
+            </listType>
+        </parameter>
+        <simObjectType/>
+    </userFunction>
+    <ressourceClass name="Nest" id="ResourceClass_0">
+        <features>
+            <buildin>Standard Functions</buildin>
+            <buildin>Standard Object Functions</buildin>
+            <features id="SpatialInfoObjectFeatureClass_0"
+                xsi:type="XMLSpatialInfoFeature" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/nest.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="0.0" y="0.0">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="0.0" y="0.0"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </features>
+        </features>
+        <bodyClass>
+            <bodyVariableClass id="BodyVariableClass_0">
+                <variableClass name="Foodlevel" id="VariableClass_0"
+                    writeable="true" external="true" partOfName="false"
+                    configValue="true" analysisValue="true">
+                    <doubleType/>
+                    <defaultValue>
+                        <double value="0.0"/>
+                    </defaultValue>
+                </variableClass>
+            </bodyVariableClass>
+        </bodyClass>
+        <interactionelements/>
+    </ressourceClass>
+    <ressourceClass name="Food" id="ResourceClass_1">
+        <features>
+            <buildin>Standard Functions</buildin>
+            <buildin>Standard Object Functions</buildin>
+            <features id="SpatialInfoObjectFeatureClass_1"
+                xsi:type="XMLSpatialInfoFeature" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/food.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="0.0" y="0.0">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="0.0" y="0.0"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </features>
+        </features>
+        <interactionelements/>
+    </ressourceClass>
+    <agentClass name="Ant" id="ActivityAgentClass_0">
+        <features>
+            <buildin>Standard Functions</buildin>
+            <buildin>Standard Object Functions</buildin>
+            <features id="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeature" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="0.0" y="0.0">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="0.0" y="0.0"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </features>
+        </features>
+        <bodyClass>
+            <bodyVariableClass id="BodyVariableClass_1">
+                <variableClass name="Energy" id="VariableClass_1"
+                    writeable="true" external="false" partOfName="false"
+                    configValue="true" analysisValue="true">
+                    <doubleType/>
+                    <defaultValue>
+                        <double value="300.0"/>
+                    </defaultValue>
+                </variableClass>
+            </bodyVariableClass>
+            <bodyVariableClass id="BodyVariableClass_2">
+                <variableClass name="Perception" id="VariableClass_2"
+                    writeable="true" external="false" partOfName="false"
+                    configValue="true" analysisValue="true">
+                    <doubleType/>
+                    <defaultValue>
+                        <double value="15.0"/>
+                    </defaultValue>
+                </variableClass>
+            </bodyVariableClass>
+            <bodyVariableClass id="BodyVariableClass_3">
+                <variableClass name="Carries Food" id="VariableClass_3"
+                    writeable="true" external="false" partOfName="false"
+                    configValue="true" analysisValue="true">
+                    <booleanType/>
+                    <defaultValue>
+                        <boolean value="false"/>
+                    </defaultValue>
+                </variableClass>
+            </bodyVariableClass>
+            <bodyVariableClass id="BodyVariableClass_4">
+                <variableClass name="Currently Found Food"
+                    id="VariableClass_4" writeable="true"
+                    external="false" partOfName="false"
+                    configValue="true" analysisValue="true">
+                    <simObjectType/>
+                    <defaultValue>
+                        <simObject/>
+                    </defaultValue>
+                </variableClass>
+            </bodyVariableClass>
+            <bodyVariableClass id="BodyVariableClass_5">
+                <variableClass name="followProbl" id="VariableClass_5"
+                    writeable="false" external="false"
+                    partOfName="false" configValue="true" analysisValue="true">
+                    <doubleType/>
+                    <defaultValue>
+                        <double value="0.6"/>
+                    </defaultValue>
+                </variableClass>
+            </bodyVariableClass>
+        </bodyClass>
+        <interactionelements/>
+        <reasoning>
+            <composedActivity name="Complete Reasoning" id="ActivityGraph_0">
+                <entryActivity name="Entry Activity"
+                    id="EntryActivityGraphLeaf_0" x="248" y="45"
+                    width="15" height="15"/>
+                <exitActivity name="Exit Activity"
+                    id="ExitActivityGraphLeaf_0" x="164" y="69"
+                    width="15" height="15"/>
+                <emergencyActivity name="Emergency Activity"
+                    id="EmergencyActivityGraphLeaf_0" x="-13" y="51"
+                    width="130" height="50"/>
+                <actionActivity name="Walk Random"
+                    id="ActionActivityGraphLeaf_0" x="575" y="111"
+                    width="225" height="70" type="state like">
+                    <actionRule>
+                        <action>
+                            <call functionName="If Then Else">
+                                <call functionName="RandomBoolean">
+                                    <double value="0.2"/>
+                                </call>
+                                <call functionName="Block">
+                                    <call functionName="ChangeDirectionBy">
+                                    <call functionName="GetMySpatialInfo"/>
+                                    <call functionName="RandomDouble">
+                                    <double value="-45.0"/>
+                                    <double value="45.0"/>
+                                    </call>
+                                    </call>
+                                    <call functionName="Move">
+                                    <call functionName="GetMySpatialInfo"/>
+                                    </call>
+                                </call>
+                                <call functionName="Move">
+                                    <call functionName="GetMySpatialInfo"/>
+                                </call>
+                            </call>
+                        </action>
+                    </actionRule>
+                    <stayTime>
+                        <double value="1.0"/>
+                    </stayTime>
+                </actionActivity>
+                <actionActivity name="Follow Pheromone Trace"
+                    id="ActionActivityGraphLeaf_1" x="-8" y="155"
+                    width="249" height="70">
+                    <actionRule>
+                        <action>
+                            <call functionName="MoveTowardsPos">
+                                <call functionName="GetMySpatialInfo"/>
+                                <call functionName="GetPosition">
+                                    <call functionName="GetSpatialInfo">
+                                    <call userFunctionID="UserFunction_0">
+                                    <call functionName="AsList">
+                                    <call functionName="Select">
+                                    <parametricFunction>
+                                    <functionCall>
+                                    <call functionName="And">
+                                    <call functionName="InstanceOf">
+
+                                    <parameterID id="FunctionArgument_3"/>
+
+                                    <objectClassID id="ActivityAgentClass_1"/>
+                                    </call>
+                                    <call functionName="Not">
+
+                                    <call functionName="&lt;=">
+
+                                    <call functionName="PosDistance">
+
+                                    <call functionName="GetMyPosition"/>
+
+                                    <call functionName="GetPosition">
+
+                                    <call functionName="GetSpatialInfo">
+
+                                    <parameterID id="FunctionArgument_3"/>
+                                    </call>
+                                    </call>
+                                    </call>
+
+                                    <double value="1.0"/>
+                                    </call>
+                                    </call>
+                                    </call>
+                                    </functionCall>
+                                    <parameter
+                                    name="Untitled" id="FunctionArgument_3">
+                                    <simObjectType/>
+                                    </parameter>
+                                    </parametricFunction>
+                                    <call functionName="ObserveObjectsInDirection">
+                                    <call functionName="GetMyPosition"/>
+                                    <call functionName="GetDirection">
+                                    <call functionName="GetMySpatialInfo"/>
+                                    </call>
+                                    <double value="135.0"/>
+                                    <call functionName="GetVariable">
+                                    <variableID
+                                    writeable="false" id="BodyVariableClass_2"/>
+                                    </call>
+                                    <boolean value="false"/>
+                                    <boolean value="false"/>
+                                    </call>
+                                    </call>
+                                    </call>
+                                    </call>
+                                    </call>
+                                </call>
+                                <call functionName="GetSpeed">
+                                    <call functionName="GetMySpatialInfo"/>
+                                </call>
+                            </call>
+                        </action>
+                    </actionRule>
+                    <stayTime>
+                        <double value="1.0"/>
+                    </stayTime>
+                </actionActivity>
+                <actionActivity name="Move to Food"
+                    id="ActionActivityGraphLeaf_2" x="23" y="265"
+                    width="195" height="70">
+                    <actionRule>
+                        <action>
+                            <call functionName="If Then Else">
+                                <call functionName="Equal">
+                                    <call functionName="GetVariable">
+                                    <variableID writeable="false" id="BodyVariableClass_4"/>
+                                    </call>
+                                    <simObject/>
+                                </call>
+                                <call functionName="SetVariable">
+                                    <variableID id="BodyVariableClass_4"/>
+                                    <call functionName="GetFirst">
+                                    <call functionName="Select">
+                                    <parametricFunction>
+                                    <functionCall>
+                                    <call functionName="InstanceOf">
+                                    <parameterID id="FunctionArgument_4"/>
+                                    <objectClassID id="ResourceClass_1"/>
+                                    </call>
+                                    </functionCall>
+                                    <parameter
+                                    name="Untitled" id="FunctionArgument_4">
+                                    <simObjectType/>
+                                    </parameter>
+                                    </parametricFunction>
+                                    <call functionName="ObserveObjectsOnPosition">
+                                    <call functionName="GetMyPosition"/>
+                                    <call functionName="GetVariable">
+                                    <variableID
+                                    writeable="false" id="BodyVariableClass_2"/>
+                                    </call>
+                                    <boolean value="false"/>
+                                    <boolean value="false"/>
+                                    </call>
+                                    </call>
+                                    </call>
+                                </call>
+                                <call functionName="Noop"/>
+                            </call>
+                        </action>
+                    </actionRule>
+                    <actionRule>
+                        <action>
+                            <call functionName="MoveTowardsPos">
+                                <call functionName="GetMySpatialInfo"/>
+                                <call functionName="GetPosition">
+                                    <call functionName="GetSpatialInfo">
+                                    <call functionName="GetVariable">
+                                    <variableID
+                                    writeable="false" id="BodyVariableClass_4"/>
+                                    </call>
+                                    </call>
+                                </call>
+                                <call functionName="GetSpeed">
+                                    <call functionName="GetMySpatialInfo"/>
+                                </call>
+                            </call>
+                        </action>
+                    </actionRule>
+                    <stayTime>
+                        <double value="1.0"/>
+                    </stayTime>
+                </actionActivity>
+                <actionActivity name="Carry Food to Nest"
+                    id="ActionActivityGraphLeaf_3" x="602" y="282"
+                    width="174" height="70">
+                    <actionRule>
+                        <action>
+                            <call functionName="MoveTowardsPos">
+                                <call functionName="GetMySpatialInfo"/>
+                                <call functionName="GetPosition">
+                                    <call functionName="GetSpatialInfo">
+                                    <call functionName="GetFirst">
+                                    <call functionName="Select">
+                                    <parametricFunction>
+                                    <functionCall>
+                                    <call functionName="InstanceOf">
+                                    <parameterID id="FunctionArgument_5"/>
+
+                                    <objectClassID id="ResourceClass_0"/>
+                                    </call>
+                                    </functionCall>
+                                    <parameter
+                                    name="Untitled" id="FunctionArgument_5">
+                                    <simObjectType/>
+                                    </parameter>
+                                    </parametricFunction>
+                                    <call functionName="ObserveObjectsOnPosition">
+                                    <call functionName="GetMyPosition"/>
+                                    <call functionName="GetVariable">
+                                    <variableID
+                                    writeable="false" id="BodyVariableClass_2"/>
+                                    </call>
+                                    <boolean value="false"/>
+                                    <boolean value="false"/>
+                                    </call>
+                                    </call>
+                                    </call>
+                                    </call>
+                                </call>
+                                <call functionName="GetSpeed">
+                                    <call functionName="GetMySpatialInfo"/>
+                                </call>
+                            </call>
+                        </action>
+                    </actionRule>
+                    <stayTime>
+                        <double value="1.0"/>
+                    </stayTime>
+                </actionActivity>
+                <actionActivity name="Put Food in Nest"
+                    id="ActionActivityGraphLeaf_4" x="326" y="334"
+                    width="197" height="79" type="state like">
+                    <actionRule>
+                        <action>
+                            <call functionName="SetVariable">
+                                <variableID id="BodyVariableClass_3"/>
+                                <boolean value="false"/>
+                            </call>
+                        </action>
+                    </actionRule>
+                    <actionRule>
+                        <action>
+                            <call functionName="ChangeDirectionTo">
+                                <call functionName="GetMySpatialInfo"/>
+                                <call functionName="If Then Else">
+                                    <call functionName=">=">
+                                    <call functionName="GetDirection">
+                                    <call functionName="GetMySpatialInfo"/>
+                                    </call>
+                                    <double value="180.0"/>
+                                    </call>
+                                    <call functionName="-">
+                                    <call functionName="GetDirection">
+                                    <call functionName="GetMySpatialInfo"/>
+                                    </call>
+                                    <double value="180.0"/>
+                                    </call>
+                                    <call functionName="+">
+                                    <call functionName="GetDirection">
+                                    <call functionName="GetMySpatialInfo"/>
+                                    </call>
+                                    <double value="180.0"/>
+                                    </call>
+                                </call>
+                            </call>
+                        </action>
+                    </actionRule>
+                    <actionRule>
+                        <action>
+                            <call functionName="SetVariable">
+                                <variableID id="BodyVariableClass_1"/>
+                                <double value="300.0"/>
+                            </call>
+                        </action>
+                    </actionRule>
+                    <stayTime>
+                        <double value="1.0"/>
+                    </stayTime>
+                </actionActivity>
+                <decisionActivity name="Decide" id="DecisionGraphLeaf_0"
+                    x="357" y="112" width="90" height="70"/>
+                <actionActivity name="Take Food"
+                    id="ActionActivityGraphLeaf_5" x="133" y="403"
+                    width="191" height="90">
+                    <actionRule>
+                        <action>
+                            <call functionName="SetVariable">
+                                <variableID id="BodyVariableClass_3"/>
+                                <boolean value="true"/>
+                            </call>
+                        </action>
+                    </actionRule>
+                    <actionRule>
+                        <action>
+                            <call functionName="SetVariable">
+                                <variableID id="BodyVariableClass_4"/>
+                                <simObject/>
+                            </call>
+                        </action>
+                    </actionRule>
+                    <actionRule>
+                        <action>
+                            <call functionName="SetVariable">
+                                <variableID id="BodyVariableClass_1"/>
+                                <double value="300.0"/>
+                            </call>
+                        </action>
+                    </actionRule>
+                    <actionRule>
+                        <action>
+                            <call functionName="ChangeDirectionTo">
+                                <call functionName="GetMySpatialInfo"/>
+                                <call functionName="If Then Else">
+                                    <call functionName=">=">
+                                    <call functionName="GetDirection">
+                                    <call functionName="GetMySpatialInfo"/>
+                                    </call>
+                                    <double value="180.0"/>
+                                    </call>
+                                    <call functionName="-">
+                                    <call functionName="GetDirection">
+                                    <call functionName="GetMySpatialInfo"/>
+                                    </call>
+                                    <double value="180.0"/>
+                                    </call>
+                                    <call functionName="+">
+                                    <call functionName="GetDirection">
+                                    <call functionName="GetMySpatialInfo"/>
+                                    </call>
+                                    <double value="180.0"/>
+                                    </call>
+                                </call>
+                            </call>
+                        </action>
+                    </actionRule>
+                    <stayTime>
+                        <double value="1.0"/>
+                    </stayTime>
+                </actionActivity>
+                <actionActivity name="Initialize"
+                    id="ActionActivityGraphLeaf_6" x="338" y="15"
+                    width="209" height="70" instantly="true" type="state like">
+                    <entryActionRule>
+                        <action>
+                            <call functionName="ChangeDirectionTo">
+                                <call functionName="GetMySpatialInfo"/>
+                                <call functionName="RandomInt">
+                                    <integer value="0"/>
+                                    <integer value="359"/>
+                                </call>
+                            </call>
+                        </action>
+                    </entryActionRule>
+                    <entryActionRule>
+                        <action>
+                            <call functionName="ChangeSpeedTo">
+                                <call functionName="GetMySpatialInfo"/>
+                                <double value="5.0"/>
+                            </call>
+                        </action>
+                    </entryActionRule>
+                    <entryActionRule>
+                        <action>
+                            <call functionName="ChangeShapeSizeTo">
+                                <call functionName="GetShape">
+                                    <call functionName="GetMySpatialInfo"/>
+                                </call>
+                                <double value="8.0"/>
+                                <double value="8.0"/>
+                            </call>
+                        </action>
+                    </entryActionRule>
+                    <stayTime>
+                        <double value="1.0"/>
+                    </stayTime>
+                </actionActivity>
+                <chainRule toActivityID="ActionActivityGraphLeaf_1" fromActivityID="DecisionGraphLeaf_0">
+                    <precondition>
+                        <call functionName="And">
+                            <call functionName="RandomBoolean">
+                                <call functionName="GetVariable">
+                                    <variableID id="BodyVariableClass_5"/>
+                                </call>
+                            </call>
+                            <call functionName="Not">
+                                <call functionName="IsEmpty">
+                                    <call functionName="AsList">
+                                    <call functionName="Select">
+                                    <parametricFunction>
+                                    <functionCall>
+                                    <call functionName="And">
+                                    <call functionName="InstanceOf">
+                                    <parameterID id="FunctionArgument_6"/>
+
+                                    <objectClassID id="ActivityAgentClass_1"/>
+                                    </call>
+                                    <call functionName="Not">
+                                    <call functionName="&lt;=">
+                                    <call functionName="PosDistance">
+
+                                    <call functionName="GetMyPosition"/>
+
+                                    <call functionName="GetPosition">
+
+                                    <call functionName="GetSpatialInfo">
+
+                                    <parameterID id="FunctionArgument_6"/>
+                                    </call>
+                                    </call>
+                                    </call>
+                                    <double value="1.0"/>
+                                    </call>
+                                    </call>
+                                    </call>
+                                    </functionCall>
+                                    <parameter
+                                    name="Untitled" id="FunctionArgument_6">
+                                    <simObjectType/>
+                                    </parameter>
+                                    </parametricFunction>
+                                    <call functionName="ObserveObjectsInDirection">
+                                    <call functionName="GetMyPosition"/>
+                                    <call functionName="GetDirection">
+                                    <call functionName="GetMySpatialInfo"/>
+                                    </call>
+                                    <double value="135.0"/>
+                                    <call functionName="GetVariable">
+                                    <variableID
+                                    writeable="false" id="BodyVariableClass_2"/>
+                                    </call>
+                                    <boolean value="false"/>
+                                    <boolean value="false"/>
+                                    </call>
+                                    </call>
+                                    </call>
+                                </call>
+                            </call>
+                            <call functionName="Not">
+                                <call functionName="And">
+                                    <call functionName="Not">
+                                    <call functionName="IsEmpty">
+                                    <call functionName="Select">
+                                    <parametricFunction>
+                                    <functionCall>
+                                    <call functionName="InstanceOf">
+                                    <parameterID id="FunctionArgument_7"/>
+
+                                    <objectClassID id="ResourceClass_1"/>
+                                    </call>
+                                    </functionCall>
+                                    <parameter
+                                    name="Untitled" id="FunctionArgument_7">
+                                    <simObjectType/>
+                                    </parameter>
+                                    </parametricFunction>
+                                    <call functionName="ObserveObjectsInDirection">
+                                    <call functionName="GetMyPosition"/>
+                                    <call functionName="GetDirection">
+                                    <call functionName="GetMySpatialInfo"/>
+                                    </call>
+                                    <double value="135.0"/>
+                                    <call functionName="GetVariable">
+                                    <variableID
+                                    writeable="false" id="BodyVariableClass_2"/>
+                                    </call>
+                                    <boolean value="false"/>
+                                    <boolean value="false"/>
+                                    </call>
+                                    </call>
+                                    </call>
+                                    </call>
+                                    <call functionName="Not">
+                                    <call functionName="GetVariable">
+                                    <variableID
+                                    writeable="false" id="BodyVariableClass_3"/>
+                                    </call>
+                                    </call>
+                                </call>
+                            </call>
+                            <call functionName="Not">
+                                <call functionName="And">
+                                    <call functionName="GetVariable">
+                                    <variableID writeable="false" id="BodyVariableClass_3"/>
+                                    </call>
+                                    <call functionName="Not">
+                                    <call functionName="IsEmpty">
+                                    <call functionName="Select">
+                                    <parametricFunction>
+                                    <functionCall>
+                                    <call functionName="InstanceOf">
+                                    <parameterID id="FunctionArgument_8"/>
+
+                                    <objectClassID id="ResourceClass_0"/>
+                                    </call>
+                                    </functionCall>
+                                    <parameter
+                                    name="Untitled" id="FunctionArgument_8">
+                                    <simObjectType/>
+                                    </parameter>
+                                    </parametricFunction>
+                                    <call functionName="ObserveObjectsOnPosition">
+                                    <call functionName="GetMyPosition"/>
+                                    <call functionName="GetVariable">
+                                    <variableID
+                                    writeable="false" id="BodyVariableClass_2"/>
+                                    </call>
+                                    <boolean value="false"/>
+                                    <boolean value="false"/>
+                                    </call>
+                                    </call>
+                                    </call>
+                                    </call>
+                                </call>
+                            </call>
+                        </call>
+                    </precondition>
+                </chainRule>
+                <chainRule toActivityID="ActionActivityGraphLeaf_3" fromActivityID="DecisionGraphLeaf_0">
+                    <precondition>
+                        <call functionName="And">
+                            <call functionName="GetVariable">
+                                <variableID writeable="false" id="BodyVariableClass_3"/>
+                            </call>
+                            <call functionName="Not">
+                                <call functionName="IsEmpty">
+                                    <call functionName="Select">
+                                    <parametricFunction>
+                                    <functionCall>
+                                    <call functionName="InstanceOf">
+                                    <parameterID id="FunctionArgument_9"/>
+                                    <objectClassID id="ResourceClass_0"/>
+                                    </call>
+                                    </functionCall>
+                                    <parameter name="Untitled" id="FunctionArgument_9">
+                                    <simObjectType/>
+                                    </parameter>
+                                    </parametricFunction>
+                                    <call functionName="ObserveObjectsOnPosition">
+                                    <call functionName="GetMyPosition"/>
+                                    <call functionName="GetVariable">
+                                    <variableID
+                                    writeable="false" id="BodyVariableClass_2"/>
+                                    </call>
+                                    <boolean value="false"/>
+                                    <boolean value="false"/>
+                                    </call>
+                                    </call>
+                                </call>
+                            </call>
+                        </call>
+                    </precondition>
+                </chainRule>
+                <chainRule toActivityID="ActionActivityGraphLeaf_4" fromActivityID="ActionActivityGraphLeaf_3">
+                    <precondition>
+                        <call functionName="Not">
+                            <call functionName="IsEmpty">
+                                <call functionName="Select">
+                                    <parametricFunction>
+                                    <functionCall>
+                                    <call functionName="InstanceOf">
+                                    <parameterID id="FunctionArgument_10"/>
+                                    <objectClassID id="ResourceClass_0"/>
+                                    </call>
+                                    </functionCall>
+                                    <parameter name="Untitled" id="FunctionArgument_10">
+                                    <simObjectType/>
+                                    </parameter>
+                                    </parametricFunction>
+                                    <call functionName="ObserveObjectsOnPosition">
+                                    <call functionName="GetMyPosition"/>
+                                    <double value="1.0"/>
+                                    <boolean value="false"/>
+                                    <boolean value="false"/>
+                                    </call>
+                                </call>
+                            </call>
+                        </call>
+                    </precondition>
+                </chainRule>
+                <chainRule toActivityID="ActionActivityGraphLeaf_2" fromActivityID="DecisionGraphLeaf_0">
+                    <precondition>
+                        <call functionName="And">
+                            <call functionName="Not">
+                                <call functionName="IsEmpty">
+                                    <call functionName="Select">
+                                    <parametricFunction>
+                                    <functionCall>
+                                    <call functionName="InstanceOf">
+                                    <parameterID id="FunctionArgument_11"/>
+                                    <objectClassID id="ResourceClass_1"/>
+                                    </call>
+                                    </functionCall>
+                                    <parameter name="Untitled" id="FunctionArgument_11">
+                                    <simObjectType/>
+                                    </parameter>
+                                    </parametricFunction>
+                                    <call functionName="ObserveObjectsInDirection">
+                                    <call functionName="GetMyPosition"/>
+                                    <call functionName="GetDirection">
+                                    <call functionName="GetMySpatialInfo"/>
+                                    </call>
+                                    <double value="135.0"/>
+                                    <call functionName="GetVariable">
+                                    <variableID
+                                    writeable="false" id="BodyVariableClass_2"/>
+                                    </call>
+                                    <boolean value="false"/>
+                                    <boolean value="false"/>
+                                    </call>
+                                    </call>
+                                </call>
+                            </call>
+                            <call functionName="Not">
+                                <call functionName="GetVariable">
+                                    <variableID writeable="false" id="BodyVariableClass_3"/>
+                                </call>
+                            </call>
+                        </call>
+                    </precondition>
+                </chainRule>
+                <chainRule toActivityID="ActionActivityGraphLeaf_5" fromActivityID="ActionActivityGraphLeaf_2">
+                    <precondition>
+                        <call functionName="Equal">
+                            <call functionName="GetPosition">
+                                <call functionName="GetSpatialInfo">
+                                    <call functionName="GetVariable">
+                                    <variableID writeable="false" id="BodyVariableClass_4"/>
+                                    </call>
+                                </call>
+                            </call>
+                            <call functionName="GetMyPosition"/>
+                        </call>
+                    </precondition>
+                </chainRule>
+                <chainRule toActivityID="DecisionGraphLeaf_0" fromActivityID="ActionActivityGraphLeaf_5">
+                    <precondition>
+                        <boolean value="true"/>
+                    </precondition>
+                </chainRule>
+                <chainRule toActivityID="DecisionGraphLeaf_0" fromActivityID="ActionActivityGraphLeaf_1">
+                    <controlPoint x="225" y="106"/>
+                    <precondition>
+                        <boolean value="true"/>
+                    </precondition>
+                </chainRule>
+                <chainRule toActivityID="DecisionGraphLeaf_0" fromActivityID="ActionActivityGraphLeaf_0">
+                    <controlPoint x="484" y="124"/>
+                    <precondition>
+                        <boolean value="true"/>
+                    </precondition>
+                </chainRule>
+                <chainRule toActivityID="DecisionGraphLeaf_0" fromActivityID="ActionActivityGraphLeaf_4">
+                    <precondition>
+                        <boolean value="true"/>
+                    </precondition>
+                </chainRule>
+                <chainRule toActivityID="ActionActivityGraphLeaf_6" fromActivityID="EntryActivityGraphLeaf_0">
+                    <precondition>
+                        <boolean value="true"/>
+                    </precondition>
+                </chainRule>
+                <chainRule toActivityID="DecisionGraphLeaf_0" fromActivityID="ActionActivityGraphLeaf_6">
+                    <precondition>
+                        <boolean value="true"/>
+                    </precondition>
+                </chainRule>
+                <otherwiseChainRule
+                    toActivityID="ActionActivityGraphLeaf_0" fromDecisionActivityID="DecisionGraphLeaf_0"/>
+            </composedActivity>
+        </reasoning>
+        <reasoning>
+            <composedActivity name="Decrement Energy Level" id="ActivityGraph_1">
+                <entryActivity name="Entry Activity"
+                    id="EntryActivityGraphLeaf_1" x="102" y="187"
+                    width="15" height="15"/>
+                <exitActivity name="Exit Activity"
+                    id="ExitActivityGraphLeaf_1" x="559" y="178"
+                    width="15" height="15"/>
+                <emergencyActivity name="Emergency Activity"
+                    id="EmergencyActivityGraphLeaf_1" x="53" y="243"
+                    width="130" height="50"/>
+                <actionActivity name="Idle"
+                    id="ActionActivityGraphLeaf_7" x="202" y="155"
+                    width="160" height="70" type="state like">
+                    <actionRule>
+                        <action>
+                            <call functionName="IncrementVar">
+                                <variableID id="BodyVariableClass_1"/>
+                                <double value="-1.0"/>
+                            </call>
+                        </action>
+                    </actionRule>
+                    <stayTime>
+                        <double value="1.0"/>
+                    </stayTime>
+                </actionActivity>
+                <chainRule toActivityID="ActionActivityGraphLeaf_7" fromActivityID="EntryActivityGraphLeaf_1">
+                    <precondition>
+                        <boolean value="true"/>
+                    </precondition>
+                </chainRule>
+                <chainRule toActivityID="ExitActivityGraphLeaf_1" fromActivityID="ActionActivityGraphLeaf_7">
+                    <precondition>
+                        <call functionName="&lt;=">
+                            <call functionName="GetVariable">
+                                <variableID writeable="false" id="BodyVariableClass_1"/>
+                            </call>
+                            <double value="0.0"/>
+                        </call>
+                    </precondition>
+                </chainRule>
+            </composedActivity>
+        </reasoning>
+        <reasoning>
+            <composedActivity name="Create Pheromone" id="ActivityGraph_2">
+                <entryActivity name="Entry Activity"
+                    id="EntryActivityGraphLeaf_2" x="366" y="79"
+                    width="15" height="15"/>
+                <exitActivity name="Exit Activity"
+                    id="ExitActivityGraphLeaf_2" x="95" y="195"
+                    width="15" height="15"/>
+                <emergencyActivity name="Emergency Activity"
+                    id="EmergencyActivityGraphLeaf_2" x="78" y="66"
+                    width="130" height="50"/>
+                <actionActivity name="Idle"
+                    id="ActionActivityGraphLeaf_8" x="221" y="175"
+                    width="310" height="70" type="state like">
+                    <actionRule>
+                        <action>
+                            <call functionName="If Then Else">
+                                <call functionName="IsEmpty">
+                                    <call functionName="Select">
+                                    <parametricFunction>
+                                    <functionCall>
+                                    <call functionName="InstanceOf">
+                                    <parameterID id="FunctionArgument_12"/>
+                                    <objectClassID id="ResourceClass_0"/>
+                                    </call>
+                                    </functionCall>
+                                    <parameter name="Untitled" id="FunctionArgument_12">
+                                    <simObjectType/>
+                                    </parameter>
+                                    </parametricFunction>
+                                    <call functionName="ObserveObjectsInDirection">
+                                    <call functionName="GetMyPosition"/>
+                                    <call functionName="GetDirection">
+                                    <call functionName="GetMySpatialInfo"/>
+                                    </call>
+                                    <double value="30.0"/>
+                                    <double value="10.0"/>
+                                    <boolean value="false"/>
+                                    <boolean value="false"/>
+                                    </call>
+                                    </call>
+                                </call>
+                                <call functionName="If Then Else">
+                                    <call functionName="IsEmpty">
+                                    <call functionName="Select">
+                                    <parametricFunction>
+                                    <functionCall>
+                                    <call functionName="InstanceOf">
+                                    <parameterID id="FunctionArgument_13"/>
+                                    <objectClassID id="ActivityAgentClass_1"/>
+                                    </call>
+                                    </functionCall>
+                                    <parameter
+                                    name="Untitled" id="FunctionArgument_13">
+                                    <simObjectType/>
+                                    </parameter>
+                                    </parametricFunction>
+                                    <call functionName="ObserveObjectsOnPosition">
+                                    <call functionName="GetMyPosition"/>
+                                    <double value="3.0"/>
+                                    <boolean value="false"/>
+                                    <boolean value="false"/>
+                                    </call>
+                                    </call>
+                                    </call>
+                                    <call functionName="CreateObjectAndRemember">
+                                    <objectInstance
+                                    id="ActivityAgentInstance_0" objectClassID="ActivityAgentClass_1">
+                                    <bodyVariableInstance bodyVariableClassID="BodyVariableClass_6"/>
+                                    <featureInstance
+                                    featureObjectClassID="SpatialInfoObjectFeatureClass_3"
+                                    xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                                    <spatialInfo
+                                    speed="10.0"
+                                    direction="0.0"
+                                    drawPriority="3.0"
+                                    imageStyle="0"
+                                    shapeStyle="2"
+                                    x="0.0" y="0.0">
+                                    <figure
+                                    direction="0.0"
+                                    radius="5.0" xsi:type="XMLCircle">
+                                    <balancePoint
+                                    x="5.0" y="5.0"/>
+                                    <position
+                                    x="0.0" y="0.0"/>
+                                    </figure>
+                                    <shapeColor red="0"
+                                    green="0" blue="0"/>
+                                    </spatialInfo>
+                                    </featureInstance>
+                                    </objectInstance>
+                                    <parametricFunction>
+                                    <functionCall>
+                                    <call functionName="Block">
+                                    <call functionName="BeamTo">
+                                    <call functionName="GetSpatialInfo">
+                                    <parameterID id="FunctionArgument_14"/>
+                                    </call>
+                                    <call functionName="GetMyPosition"/>
+                                    </call>
+                                    <call functionName="ChangeImage">
+                                    <call functionName="GetSpatialInfo">
+                                    <parameterID id="FunctionArgument_14"/>
+                                    </call>
+                                    <image value="C:/Program Files (x86)/SeSAm/models/Ants/bilder/phero5.png"/>
+                                    </call>
+                                    <call functionName="ChangeShapeSizeTo">
+                                    <call functionName="GetShape">
+                                    <call functionName="GetSpatialInfo">
+
+                                    <parameterID id="FunctionArgument_14"/>
+                                    </call>
+                                    </call>
+                                    <double value="1.0"/>
+                                    <double value="1.0"/>
+                                    </call>
+                                    </call>
+                                    </functionCall>
+                                    <parameter name="Pheromone" id="FunctionArgument_14">
+                                    <simObjectType/>
+                                    </parameter>
+                                    </parametricFunction>
+                                    </call>
+                                    <call functionName="SetVariableOf">
+                                    <variableID id="BodyVariableClass_6"/>
+                                    <call functionName="+">
+                                    <call functionName="GetVariableFrom">
+                                    <variableID
+                                    writeable="false" id="BodyVariableClass_6"/>
+                                    <call functionName="GetFirst">
+                                    <call functionName="Select">
+                                    <parametricFunction>
+                                    <functionCall>
+                                    <call functionName="InstanceOf">
+
+                                    <parameterID id="FunctionArgument_15"/>
+
+                                    <objectClassID id="ActivityAgentClass_1"/>
+                                    </call>
+                                    </functionCall>
+                                    <parameter
+                                    name="Untitled" id="FunctionArgument_15">
+                                    <simObjectType/>
+                                    </parameter>
+                                    </parametricFunction>
+                                    <call functionName="ObserveObjectsOnPosition">
+                                    <call functionName="GetMyPosition"/>
+                                    <double value="3.0"/>
+                                    <boolean value="false"/>
+                                    <boolean value="false"/>
+                                    </call>
+                                    </call>
+                                    </call>
+                                    </call>
+                                    <double value="10.0"/>
+                                    </call>
+                                    <call functionName="GetFirst">
+                                    <call functionName="Select">
+                                    <parametricFunction>
+                                    <functionCall>
+                                    <call functionName="InstanceOf">
+                                    <parameterID id="FunctionArgument_16"/>
+
+                                    <objectClassID id="ActivityAgentClass_1"/>
+                                    </call>
+                                    </functionCall>
+                                    <parameter
+                                    name="Untitled" id="FunctionArgument_16">
+                                    <simObjectType/>
+                                    </parameter>
+                                    </parametricFunction>
+                                    <call functionName="ObserveObjectsOnPosition">
+                                    <call functionName="GetMyPosition"/>
+                                    <double value="3.0"/>
+                                    <boolean value="false"/>
+                                    <boolean value="false"/>
+                                    </call>
+                                    </call>
+                                    </call>
+                                    </call>
+                                </call>
+                                <call functionName="Noop"/>
+                            </call>
+                        </action>
+                    </actionRule>
+                    <stayTime>
+                        <double value="1.0"/>
+                    </stayTime>
+                </actionActivity>
+                <chainRule toActivityID="ActionActivityGraphLeaf_8" fromActivityID="EntryActivityGraphLeaf_2">
+                    <precondition>
+                        <boolean value="true"/>
+                    </precondition>
+                </chainRule>
+            </composedActivity>
+        </reasoning>
+    </agentClass>
+    <agentClass name="Pheromone" id="ActivityAgentClass_1">
+        <features>
+            <buildin>Standard Functions</buildin>
+            <buildin>Standard Object Functions</buildin>
+            <features id="SpatialInfoObjectFeatureClass_3"
+                xsi:type="XMLSpatialInfoFeature" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="0.0" y="0.0">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="0.0" y="0.0"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </features>
+        </features>
+        <bodyClass>
+            <bodyVariableClass id="BodyVariableClass_6">
+                <variableClass name="Strength" id="VariableClass_6"
+                    writeable="true" external="true" partOfName="false"
+                    configValue="true" analysisValue="true">
+                    <doubleType/>
+                    <defaultValue>
+                        <double value="40.0"/>
+                    </defaultValue>
+                </variableClass>
+            </bodyVariableClass>
+        </bodyClass>
+        <interactionelements/>
+        <reasoning>
+            <composedActivity name="Reasoning" id="ActivityGraph_3">
+                <entryActivity name="Entry Activity"
+                    id="EntryActivityGraphLeaf_3" x="69" y="231"
+                    width="15" height="15"/>
+                <exitActivity name="Exit Activity"
+                    id="ExitActivityGraphLeaf_3" x="647" y="243"
+                    width="15" height="15"/>
+                <emergencyActivity name="Emergency Activity"
+                    id="EmergencyActivityGraphLeaf_3" x="153" y="89"
+                    width="130" height="50"/>
+                <actionActivity name="Increment 39-30"
+                    id="ActionActivityGraphLeaf_9" x="224" y="188"
+                    width="177" height="108">
+                    <entryActionRule>
+                        <action>
+                            <call functionName="ChangeImage">
+                                <call functionName="GetMySpatialInfo"/>
+                                <image value="C:/Program Files (x86)/SeSAm/models/Ants/bilder/phero4.png"/>
+                            </call>
+                        </action>
+                    </entryActionRule>
+                    <entryActionRule>
+                        <action>
+                            <call functionName="ChangeDrawPriority">
+                                <call functionName="GetMySpatialInfo"/>
+                                <double value="1.0"/>
+                            </call>
+                        </action>
+                    </entryActionRule>
+                    <actionRule>
+                        <action>
+                            <call functionName="IncrementVar">
+                                <variableID external="false" id="BodyVariableClass_6"/>
+                                <double value="-1.0"/>
+                            </call>
+                        </action>
+                    </actionRule>
+                    <actionRule>
+                        <action>
+                            <call functionName="If Then Else">
+                                <call functionName=">=">
+                                    <call functionName="GetVariable">
+                                    <variableID external="false"
+                                    writeable="false" id="BodyVariableClass_6"/>
+                                    </call>
+                                    <double value="40.0"/>
+                                </call>
+                                <call functionName="ChangeImage">
+                                    <call functionName="GetMySpatialInfo"/>
+                                    <image value="C:/Program Files (x86)/SeSAm/models/Ants/bilder/phero5.png"/>
+                                </call>
+                                <call functionName="If Then Else">
+                                    <call functionName=">=">
+                                    <call functionName="GetVariable">
+                                    <variableID external="false"
+                                    writeable="false" id="BodyVariableClass_6"/>
+                                    </call>
+                                    <double value="30.0"/>
+                                    </call>
+                                    <call functionName="ChangeImage">
+                                    <call functionName="GetMySpatialInfo"/>
+                                    <image value="C:/Program Files (x86)/SeSAm/models/Ants/bilder/phero4.png"/>
+                                    </call>
+                                    <call functionName="If Then Else">
+                                    <call functionName=">=">
+                                    <call functionName="GetVariable">
+                                    <variableID
+                                    external="false"
+                                    writeable="false" id="BodyVariableClass_6"/>
+                                    </call>
+                                    <double value="20.0"/>
+                                    </call>
+                                    <call functionName="ChangeImage">
+                                    <call functionName="GetMySpatialInfo"/>
+                                    <image value="C:/Program Files (x86)/SeSAm/models/Ants/bilder/phero3.png"/>
+                                    </call>
+                                    <call functionName="If Then Else">
+                                    <call functionName=">=">
+                                    <call functionName="GetVariable">
+                                    <variableID
+                                    external="false"
+                                    writeable="false" id="BodyVariableClass_6"/>
+                                    </call>
+                                    <double value="10.0"/>
+                                    </call>
+                                    <call functionName="ChangeImage">
+                                    <call functionName="GetMySpatialInfo"/>
+                                    <image value="C:/Program Files (x86)/SeSAm/models/Ants/bilder/phero2.png"/>
+                                    </call>
+                                    <call functionName="ChangeImage">
+                                    <call functionName="GetMySpatialInfo"/>
+                                    <image value="C:/Program Files (x86)/SeSAm/models/Ants/bilder/phero1.png"/>
+                                    </call>
+                                    </call>
+                                    </call>
+                                </call>
+                            </call>
+                        </action>
+                    </actionRule>
+                    <stayTime>
+                        <double value="1.0"/>
+                    </stayTime>
+                </actionActivity>
+                <chainRule toActivityID="ActionActivityGraphLeaf_9" fromActivityID="EntryActivityGraphLeaf_3">
+                    <precondition>
+                        <boolean value="true"/>
+                    </precondition>
+                </chainRule>
+                <chainRule toActivityID="ExitActivityGraphLeaf_3" fromActivityID="ActionActivityGraphLeaf_9">
+                    <precondition>
+                        <call functionName="&lt;=">
+                            <call functionName="GetVariable">
+                                <variableID external="false"
+                                    writeable="false" id="BodyVariableClass_6"/>
+                            </call>
+                            <double value="0.0"/>
+                        </call>
+                    </precondition>
+                </chainRule>
+            </composedActivity>
+        </reasoning>
+    </agentClass>
+    <worldClass name="Untitled World Class" id="ActivityWorldClass_0" updateBeforeAllObjects="false">
+        <features>
+            <buildin>Standard Functions</buildin>
+            <buildin>Standard Object Functions</buildin>
+            <features id="SpatialMapFeatureClass_0"
+                xsi:type="XMLSpatialMapFeature" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </features>
+        <interactionelements/>
+        <reasoning>
+            <composedActivity name="Reasoning" id="ActivityGraph_4">
+                <entryActivity name="Entry Activity"
+                    id="EntryActivityGraphLeaf_4" x="14" y="107"
+                    width="15" height="15"/>
+                <exitActivity name="Exit Activity"
+                    id="ExitActivityGraphLeaf_4" x="67" y="8" width="15" height="15"/>
+                <emergencyActivity name="Emergency Activity"
+                    id="EmergencyActivityGraphLeaf_4" x="178" y="113"
+                    width="130" height="50"/>
+                <actionActivity name="Idle"
+                    id="ActionActivityGraphLeaf_10" x="158" y="77"
+                    width="90" height="70" type="state like">
+                    <stayTime>
+                        <double value="1.0"/>
+                    </stayTime>
+                </actionActivity>
+                <chainRule toActivityID="ActionActivityGraphLeaf_10" fromActivityID="EntryActivityGraphLeaf_4">
+                    <precondition>
+                        <boolean value="true"/>
+                    </precondition>
+                </chainRule>
+            </composedActivity>
+        </reasoning>
+    </worldClass>
+    <situation name="Antsworld" id="Situation_0">
+        <worldInstance id="ActivityWorldInstance_0" objectClassID="ActivityWorldClass_0">
+            <featureInstance
+                featureObjectClassID="SpatialMapFeatureClass_0"
+                torus="true" drawGrid="false" discrete="false"
+                rotateImages="true" centeredPos="true" tiled="false"
+                horizontalTiles="1" verticalTiles="1"
+                xsi:type="XMLSpatialMapFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <mapSize width="250.0" height="250.0"/>
+                <gridCols value="25"/>
+                <gridRows value="25"/>
+            </featureInstance>
+        </worldInstance>
+        <objectInstance id="ResourceInstance_0" objectClassID="ResourceClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_0"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_0"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/nest.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="137.94328754984494" y="134.11608329641118">
+                    <figure direction="0.0" radius="10.0" xsi:type="XMLCircle">
+                        <balancePoint x="10.0" y="10.0"/>
+                        <position x="137.94328754984494" y="134.11608329641118"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ResourceInstance_1" objectClassID="ResourceClass_1">
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_1"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/food.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="222.78739262795318" y="105.6243228950791">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="222.78739262795318" y="105.6243228950791"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_1" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="142.41630202503305" y="133.97654421491808">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="142.41630202503305" y="133.97654421491808"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_2" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="135.12262134934363" y="130.607001119365">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="135.12262134934363" y="130.607001119365"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_3" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="115.013483260405" y="122.8464943522947">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="115.013483260405" y="122.8464943522947"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_4" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="125.99470845629388" y="150.01780807978017">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="125.99470845629388" y="150.01780807978017"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_5" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="143.73918795156203" y="144.1551338149995">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="143.73918795156203" y="144.1551338149995"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_6" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="156.74290220820188" y="133.46774193548387">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="156.74290220820188" y="133.46774193548387"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_7" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="147.06675485906175" y="136.0868016688715">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="147.06675485906175" y="136.0868016688715"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_8" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="139.57972931718734" y="119.04319731352395">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="139.57972931718734" y="119.04319731352395"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_9" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="115.64058206980766" y="147.31479597028593">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="115.64058206980766" y="147.31479597028593"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_10" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="145.94738984430649" y="125.27093721379872">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="145.94738984430649" y="125.27093721379872"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_11" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="124.60567823343848" y="122.2397476340694">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="124.60567823343848" y="122.2397476340694"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_12" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="130.9148264984227" y="159.30599369085172">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="130.9148264984227" y="159.30599369085172"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_13" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="142.74447949526814" y="131.70347003154572">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="142.74447949526814" y="131.70347003154572"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_14" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="149.05362776025237" y="139.58990536277602">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="149.05362776025237" y="139.58990536277602"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_15" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="159.30599369085172" y="149.05362776025237">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="159.30599369085172" y="149.05362776025237"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_16" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="124.60567823343848" y="136.4353312302839">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="124.60567823343848" y="136.4353312302839"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_17" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="122.2397476340694" y="149.05362776025237">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="122.2397476340694" y="149.05362776025237"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_18" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="152.20820189274448" y="121.45110410094637">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="152.20820189274448" y="121.45110410094637"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_19" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="126.97160883280756" y="126.97160883280756">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="126.97160883280756" y="126.97160883280756"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_20" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="139.58990536277602" y="151.41955835962145">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="139.58990536277602" y="151.41955835962145"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_21" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="152.20820189274446" y="149.05362776025237">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="152.20820189274446" y="149.05362776025237"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_22" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="164.30599369085172" y="139.1955835962145">
+                    <figure direction="0.0" width="10.0"
+                        height="-0.7886435331230359" xsi:type="XMLEllipse">
+                        <balancePoint x="5.0" y="-0.39432176656151796"/>
+                        <position x="164.30599369085172" y="139.1955835962145"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_23" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="159.30599369085172" y="138.801261829653">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="159.30599369085172" y="138.801261829653"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ActivityAgentInstance_24" objectClassID="ActivityAgentClass_0">
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_1"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_2"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_3"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_4"/>
+            <bodyVariableInstance bodyVariableClassID="BodyVariableClass_5"/>
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_2"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/ant.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="110.41009463722398" y="138.01261829652998">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="110.41009463722398" y="138.01261829652998"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ResourceInstance_2" objectClassID="ResourceClass_1">
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_1"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/food.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="138.01261829652998" y="38.64353312302839">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="138.01261829652998" y="38.64353312302839"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ResourceInstance_3" objectClassID="ResourceClass_1">
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_1"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/food.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="135.64668769716087" y="223.97476340694007">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="135.64668769716087" y="223.97476340694007"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+        <objectInstance id="ResourceInstance_4" objectClassID="ResourceClass_1">
+            <featureInstance
+                featureObjectClassID="SpatialInfoObjectFeatureClass_1"
+                xsi:type="XMLSpatialInfoFeatureInstance" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <spatialInfo speed="10.0" direction="0.0"
+                    imagePath="C:/Program Files (x86)/SeSAm/models/Ants/bilder/food.png"
+                    drawPriority="3.0" imageStyle="0" shapeStyle="2"
+                    x="37.85488958990536" y="118.29652996845425">
+                    <figure direction="0.0" radius="5.0" xsi:type="XMLCircle">
+                        <balancePoint x="5.0" y="5.0"/>
+                        <position x="37.85488958990536" y="118.29652996845425"/>
+                    </figure>
+                    <shapeColor red="0" green="0" blue="0"/>
+                </spatialInfo>
+            </featureInstance>
+        </objectInstance>
+    </situation>
+    <analysis name="Ant population" id="Analysis_0" xAxisName=""
+        yAxisName="" deltaTicks="1" default="false" type="Series" windowSize="10000">
+        <item name="op2" colorRed="122" colorGreen="215" colorBlue="3">
+            <call functionName="Count">
+                <call functionName="GetAllObjects">
+                    <iteratorType>
+                        <simObjectType id="ActivityAgentClass_0"/>
+                    </iteratorType>
+                    <boolean value="true"/>
+                    <boolean value="true"/>
+                </call>
+            </call>
+            <doubleType/>
+        </item>
+    </analysis>
+    <simulation id="Simulation_0" startSituationID="Situation_0" test="false">
+        <analysis id="Analysis_0"/>
+    </simulation>
+</XMLSeSAmModel>

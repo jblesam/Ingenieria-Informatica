@@ -1,0 +1,153 @@
+import java_cup . runtime .*;
+import java .io .*;
+import java . lang . String ;
+
+import Eval . ParserEvaluator ;
+import Eval . ErrorType ;
+
+parser code {:
+
+	static FileInputStream FInStr = null ;
+	public static String fInName ;
+
+	// The lexer class is stored as a member field to allow
+	// access to its getLine () method .
+	public static Yylex yy;
+
+	public static void main ( String argv []) throws Exception {
+		parser analyzer ;
+
+		String mode = argv [0];
+		if (! mode . equals (" run ") && ! mode . equals (" evaluate ") && ! mode . equals ("generate ")) {
+			System . err . println ("[ Arguments Error ] The first parameter must be either \" run \" or \" evaluate \".") ;
+		} else {
+			String caseName = argv [1];
+			String filePath = caseName + "." + ParserEvaluator .LANGUAGE_EXTENSION ;
+			FileInputStream sourceCodeInputStream = null ; // input file
+
+			try {
+				sourceCodeInputStream = new FileInputStream ( filePath );
+			} catch ( FileNotFoundException e) {
+				System . out . println ( filePath + ": Unable to open file ");
+				return ;
+			}
+
+			if ( mode . equals (" generate ")) {
+				ParserEvaluator . setGenerateTestCase ( true );
+			}
+
+			yy = new Yylex ( sourceCodeInputStream );
+			analyzer = new parser (yy);
+			analyzer . parse ();
+
+			if ( mode . equals (" evaluate ")) {
+				ParserEvaluator . evaluateTestCase ( caseName + "." + ParserEvaluator . TESTCASE_EXTENSION );
+			}
+		}
+	} // Fi main
+
+:}
+
+
+terminal STRING_LITERAL , PATH , URL , AUDIO , SWITCH , JSON , SCRIPT , SERVICE , PLAYS , OPENS , CLOSES , TOGGLES , INT , STRING , ENDPOINT , REQUEST , SAY , LET , SLEEP , ASSIGNMENT , CONCAT , PLUS , MINUS , PRODUCT , DIVISION , OPEN_PAREN , CLOSE_PAREN , OPEN_BRACKET , CLOSE_BRACKET , SEMICOLON , COLON , COMMA , IDENTIFIER , INTEGER_LITERAL , FEEDBACK ;
+non terminal program , declaration ;
+non terminal audio_decl ;
+non terminal switch_action , switch_decl ;
+non terminal type , arglist , arglist_inner , arglist_or_error ;
+non terminal key , value , keyval_pair ;
+non terminal json_decl , keyval_pairs , json_document ;
+non terminal expression , term , factor , feedback_call ;
+non terminal variable_declaration , variable_assignment , special_statement , arguments , service_call , statement , statements , code_block , script_decl ;
+
+///////////////////////////////////////
+// Your parser definition goes here : //
+///////////////////////////////////////
+program ::= declaration program | /* Epsilon */;
+declaration ::= audio_decl | switch_decl | json_decl | script_decl ;
+
+
+/** AUDIO SERVICE **/
+audio_decl ::= AUDIO SERVICE IDENTIFIER :E1 PLAYS PATH SEMICOLON
+{:
+	ParserEvaluator . emitAudioService (E1. toString ());
+:}
+| AUDIO SERVICE IDENTIFIER :E1 PLAYS SEMICOLON
+{:
+	ParserEvaluator . emitAudioService (E1. toString ());
+	ParserEvaluator . emitError ( ErrorType . AUDIO_NO_PATH );
+:};
+
+/** SWITCH SERVICE **/
+switch_action ::= OPENS | CLOSES | TOGGLES ;
+switch_decl ::= SWITCH SERVICE IDENTIFIER :E1 switch_action IDENTIFIER SEMICOLON
+{:
+	ParserEvaluator . emitSwitchService (E1. toString ());
+:};
+
+
+/** COMMON RULES **/
+type ::= STRING | INT ;
+arglist_or_error ::= arglist
+	| {: ParserEvaluator . emitError ( ErrorType . NO_ARGLIST ); :};
+arglist ::= OPEN_PAREN CLOSE_PAREN | OPEN_PAREN arglist_inner CLOSE_PAREN ;
+arglist_inner ::= IDENTIFIER COLON type |
+	IDENTIFIER COLON type COMMA arglist_inner ;
+
+/** JSON SERVICE **/
+json_decl ::= JSON SERVICE IDENTIFIER :E1 arglist_or_error json_document
+{:
+	ParserEvaluator . emitJsonService (E1. toString ());
+:};
+key ::= REQUEST | ENDPOINT | IDENTIFIER ;
+value ::= INTEGER_LITERAL | STRING_LITERAL | IDENTIFIER | PATH | URL | json_document ;
+keyval_pair ::= key:K COLON value :V;
+keyval_pairs ::= keyval_pair
+	| keyval_pair COMMA
+	| keyval_pair COMMA keyval_pairs ;
+json_document ::= OPEN_BRACKET CLOSE_BRACKET
+	| OPEN_BRACKET keyval_pairs CLOSE_BRACKET ;
+
+/** Expressions **/
+expression ::= term PLUS expression
+	| term MINUS expression
+	| term CONCAT expression
+	| term ;
+term ::= factor PRODUCT term
+	| factor DIVISION term
+	| factor ;
+factor ::= OPEN_PAREN expression CLOSE_PAREN
+	| IDENTIFIER
+	| INTEGER_LITERAL
+	| STRING_LITERAL
+	| feedback_call ;
+feedback_call ::= FEEDBACK type
+	| FEEDBACK
+	{:
+		ParserEvaluator . emitError ( ErrorType . FEEDBACK_NO_TYPE );
+	:};
+
+/** SCRIPT SERVICE **/
+variable_declaration ::= LET IDENTIFIER COLON type
+	| LET IDENTIFIER COLON type ASSIGNMENT expression ;
+
+variable_assignment ::= IDENTIFIER ASSIGNMENT expression ;
+
+special_statement ::= SAY expression | SLEEP expression ;
+
+arguments ::= expression
+	| expression COMMA arguments ;
+service_call ::= IDENTIFIER OPEN_PAREN arguments CLOSE_PAREN
+	| IDENTIFIER OPEN_PAREN CLOSE_PAREN ;
+
+statement ::= variable_declaration
+	| variable_assignment
+	| special_statement
+	| service_call ;
+statements ::= statement SEMICOLON
+	| statement SEMICOLON statements ;
+code_block ::= OPEN_BRACKET statements CLOSE_BRACKET
+	| OPEN_BRACKET CLOSE_BRACKET ;
+script_decl ::= SCRIPT SERVICE IDENTIFIER :E1 arglist_or_error code_block
+{:
+	ParserEvaluator . emitScriptService (E1. toString ());
+:};

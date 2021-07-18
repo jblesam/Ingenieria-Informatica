@@ -1,0 +1,83 @@
+---
+title: "PAC3 Primavera 2021"
+author: "UOC"
+date: ''
+output:
+  pdf_document: default
+  word_document: default
+fontsize: 12pt
+---
+
+
+Us pot ser útil consultar el següent material:
+
+1. Repte 2. Probabilitat i variables aleatòries: Mòdul Probabilitat i variables aleatòries.
+1. Repte 2. Probabilitat i variables aleatòries: Variables aleatòries. Activitats Resoltes.
+1. Repte 2. Probabilitat i variables aleatòries: Distribucions de probabilitat i inferència estadística amb R.
+
+
+# NOM: 
+
+# PAC3
+
+En totes les preguntes, heu de indicar quin tipus de variable aleatòria feu servir i plantejar la probabilitat que se demana, com per exemple $P(X=4), P(X\leq 3)$, etc.
+
+## Pregunta 1. (30%)  
+Un laboratori de informàtica té 20 ordinadors en xarxa. Aquesta xarxa és atacada per un virus on la probabilitat que un ordinador de la xarxa sigui infectat és 0.4. Suposem que el fet que un ordinador se infecti és independent que els altres s'infectin. Calculeu:
+
+1. Probabilitat que no resulti infectat cap ordinador de la xarxa.
+1. Probabilitat que s'infectin com a mínim 10 ordinadors (10 ordinadors o més).
+1. Probabilitat que s'infectin com a màxim 8 ordinadors (8 ordinadors o menys).
+1. El nombre mitjà d'ordinadors infectats.
+
+
+### Solució
+
+Sigui $X$ la variable aleatòria que ens dóna el nombre d'ordinadors infectats. La distribución de $X$ és $B(n=20,p=0.4)$.
+
+1. Ens demanen $P(X = 0)$:
+```{r}
+dbinom(0,20,0.4)
+```
+2. $P(X \geq 10)=1-P(X\leq 9)$:
+```{r}
+1-pbinom(9,20,0.4)
+```
+3. $P(X \leq 8)$
+```{r}
+pbinom(8,20,0.4)
+```
+4. El nombre mig d'ordinadors infectats és $n\cdot p=20\cdot 0.4=`r 20*0.4`$.
+
+
+## Pregunta 2. (40%) 
+En una determinada ciutat, la probabilitat que hi hagi una tormenta un dia qualsevol val 0.6. Si hi ha una tormenta, el nombre d'accidents de tràfic se distribueix segons una Poisson de paràmetre $\lambda =10$ i si no hi ha tormenta, per una Poisson de paràmetre $\lambda =4$.
+Suposem que ahir hi ha haver 7 accidents de tràfic. Quina és la probabilitat que hi hagués tormenta?
+
+
+### Solució.
+
+Sigui $S:$"hi ha tormenta", $N:$"no hi ha tormenta". Sigui $X$ el nombre d'accidents de tràfic en un dia qualsevol.
+Ens diuen que $X|S =Pois(\lambda=10)$ i $X|N=Pois(\lambda =4)$.
+
+Ens demanen $P(S|X=7)$. Aplicant la fórmula de Bayes, tenim que:
+\begin{align*}
+P(S|X=7) & =\frac{P(S\cap X=7)}{P(X=7)}=\frac{P(S)\cdot P(X=7|S)}{P(S)\cdot P(X=7|S)+P(N)\cdot P(X=7|N)}\\ & =\frac{0.6\cdot \texttt{dpois(7,10)}}{0.6\cdot \texttt{dpois(7,10)}+0.4\cdot \texttt{dpois(7,4)}}=\frac{0.6\cdot `r dpois(7,10)`}{0.6\cdot `r dpois(7,10)`+0.4\cdot `r dpois(7,4)`}\\ &=  `r 0.6*dpois(7,10)/(0.6*dpois(7,10)+0.4*dpois(7,4))`.
+\end{align*}
+
+
+
+## Pregunta 3. (30%) 
+Un laboratori informàtic té dues impressores. La impressora A imprimeix el 40% de les impressions i el seu temps d'impressió se distribueix segons una variable exponencial de mitjana 2 minuts. La impressora B imprimeix la resta d'impressions i el seu temps d'impressió se distribueix segons una uniforme entre 0 i 5 minuts. Una impressió ha tardat menys d'un minut en imprimir-se. Quina és la probabilitat que l'hagi imprès la impressora B?
+
+### Solució
+Ens donen les probabilitats següents $P(A)=0.4$, $P(B)=0.6$. 
+
+Sigui $T$ el temps que tarda una impressió qualsevol en imprimir-se. Ens diuen que $T|A=Exp\left(\lambda =\frac{1}{2}\right)$ i $T|B=U(0,5)$.
+
+Ens demanen $P(B|T<1)$:
+\begin{align*}
+P(B|T<1)) & =\frac{P(B\cap T<1)}{P(T<1)}=\frac{P(B)\cdot P(T<1|B)}{P(B)\cdot P(T<1|B)+P(A)\cdot P(T<1|A)} \\ & = \frac{0.6\cdot \texttt{punif(1,0,5)}}{0.6\cdot \texttt{punif(1,0,5)}+0.4\cdot \texttt{pexp(1,0.5)}}=\frac{0.6\cdot `r punif(1,0,5)`}{0.6\cdot`r punif(1,0,5)`+0.4\cdot `r pexp(1,0.5)`}\\ &=
+`r 0.6*punif(1,0,5)/(0.6*punif(1,0,5)+0.4*pexp(1,0.5))`.
+\end{align*}
+

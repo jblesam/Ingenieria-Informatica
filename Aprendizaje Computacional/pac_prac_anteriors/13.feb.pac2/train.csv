@@ -1,0 +1,7 @@
+accident,intervention,fevers,alcohol,smoking,sitting,class
+1,1,0,0.8,0,0.88,N
+0,1,0,0.8,1,0.31,O
+1,1,0,1,-1,0.38,N
+1,0,0,0.8,-1,0.5,O
+0,1,0,1,-1,0.38,N
+0,1,0,0.8,-1,0.25,O
